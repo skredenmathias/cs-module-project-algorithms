@@ -2,11 +2,21 @@
 Input: a List of integers
 Returns: a List of integers
 '''
+from functools import reduce
+
 def product_of_all_other_numbers(arr):
-    # Your code here
+    # store all values in a separate array
+    original_values = arr.copy() #? O(n)
+    # multiplies all values in array
+    product = reduce(lambda x, y: x*y, arr)
+    # replace all values in array with above number
+    for elem in range(len(arr)): #? O(n)
+        arr[elem] = product
 
-    pass
-
+    # now divide each index by its value
+    for i in range(len(arr)): #? o(n)
+        arr[i] = arr[i] // original_values[i] #? O
+    return arr
 
 if __name__ == '__main__':
     # Use the main function to test your implementation
